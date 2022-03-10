@@ -38,7 +38,20 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let result = '';
+     for (let i = 0; i < expr.length; i+=10) {
+         let symbCode = expr.slice(i, i + 10);
+         if (symbCode === '**********') {
+             result += " ";
+         } else {
+             let index = symbCode.indexOf('1');
+             symbCode = symbCode.slice(index, symbCode.length);
+             symbCode = symbCode.replaceAll('10', '.').replaceAll('11', '-')
+             result += MORSE_TABLE[symbCode];  
+         }
+     }
+     
+ return result;
 }
 
 module.exports = {
